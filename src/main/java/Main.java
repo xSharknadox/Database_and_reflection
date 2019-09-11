@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 public class Main {
     public static void main(String[] args) {
+
         //get image
         File imageFile = new File("src\\main\\resources\\userImage.png");
         BufferedImage image = null;
@@ -15,14 +16,15 @@ public class Main {
             e.printStackTrace();
         }
 
-        DatabaseProxy databaseProxy = new DatabaseProxy();
-        Databaseable databaseable = databaseProxy.instanceDatabaseProxy(new Database());
+        DatabaseEnhancer enhancer = new DatabaseEnhancer();
+        Database database = enhancer.instanceDatabaseProxy(new Database());
         try {
-            databaseable.connectToDatabase();
-            databaseable.setUser("Vasya", "Pupsik", image);
-            databaseable.closeConnectToDatabase();
+            database.connectToDatabase();
+            database.setUser("Petya", "Gopnik", image);
+            database.closeConnectToDatabase();
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+
     }
 }
